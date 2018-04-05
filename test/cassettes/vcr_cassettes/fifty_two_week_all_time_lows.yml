@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://core-api.barchart.com/v1/quotes/get?fields=symbol,symbolName,lastPrice,priceChange,percentChange,highPrice,lowPrice,volume,tradeTime,symbolCode,symbolType,hasOptions&hasOptions=true&lists=stocks.highslows.current.lows.alltime.us&meta=field.shortName,field.type,field.description&raw=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip,deflate,identity
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Mechanize/2.7.5 Ruby/2.5.0p0 (http://github.com/sparklemotion/mechanize/)
+      Accept-Charset:
+      - ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Accept-Language:
+      - en-us,en;q=0.5
+      Host:
+      - core-api.barchart.com
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '300'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 05 Apr 2018 17:42:50 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/7.1.15
+      Cache-Control:
+      - no-cache, private
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '59'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST, OPTIONS
+      Access-Control-Allow-Headers:
+      - X-Requested-With, Accept, Content-Type
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA61XW2vjOBT+K8Iw7EtG2Lr40rdptrOzbGiHNpRdlnlQYiUxdawgK+mW0v++R06aWLJgSCeB1tKxdKTvcmT7NZqrbWOiq3QUGWVE3bVKYUR09e9r1L6sZwpi0fXk9q9odOjfirW0sbpqntB4JfSyapZorGBALVrzXVdze59glkJoY7swqlna4OcYE2qjUs9lY07xHHP+CW6squXqlCFjNql67uWMIbJT9bbbQ8JGGcshYrQo5bTaB+lVwtHN9LjhsSpt/GF6wjB92UAogfVEe7cxlWpaGHFrMWjxHF39GnYL3UPeAR/ghmicc+7Atqj7oCHZCXHCAK8DN+GEFCzncXwu3IWoW/n2NuphHX+7GWAdr+T86fNYbNDElOhOl57OFOf5UOcEUxLSmXBMc19ovpe1JzTFPHeEBngZS4ZKU3o5pT+A3oL3lbbQQ0oTTrOi98scEjh2VLcE9GSPY0Af0L3g+SV0v7mbPPjIb+ziLfqzmWNP8RwnLFTZOQ8pXmA2qOwCc0/wHMduZRM24kWgtGl8OcHPgm1RD4s6Z31JizRY4gXjDLQqGKM5SRl1yAAu+kz0VScMKAipzkh2LgMB1af3j3/48Ke62omlQrc7T/QUs6DocRoSPcYF8UVPMc9c0VOcZI7oI1JQ+CND2Rn5kOz/yDag+znALe6h7DF3ZU+CuscFoXGWHv4nWeIQYvno02HZ6ItfUGBiqD6PE8rPJcLorSf+4/Vk6nPwKNr5thYaXVdqKRscOO0JTuKgDYK1TzClw6d6wl0bkP3skw3giQhlMjQBYRc0wccIgN0H3OAeAnnw+I8JJZznCS04ZXneaes89hPnHLCk9NzAOTASOgritDiXkKEZ/r7/6lMxXlWNQPdiU5XoKzSbuUSTal0ZWaIvv997tmCYZCFb0CRkixRnmW8LBi+Ari0gZ9K3BYFDjyZ0aAtaXNAWv0qFZWLoEApP8N6PBw2SZim8DOYFT4qUw4nhEGT56dNj2TmRA9wANSF/FPY94jxm9v74MYrW0n4IvEbyv02lxeHuawTfBlH0420ULSpZlx17K6XNnq0elQ/7hsdmd3HdM4H2wD2HxtA+n8arpWeeb9B2zTNRz33vPO4brnW6i09O10FdzyUp6i6eh95bQEYp27muur7Dgo/fwz5dSWT7qNsZ6jjAAzLsqLJaLKSW1n0zaZ6lbJCB8HyrIWj2M5Foyi660XJXKXiRKcXLby1qpTG1XB/H4QCvl14DgW20bFuoEtEigQ7riWW3el8+u7LtS5cGtFC6WwjyY1fejjX1/JMJR/nt8O77FjXb9UxqpBZorhqYOjftPkPpT+47xXeJb40vaCzqGqlOfbSsdrJFL2rbpdMADHap0Gz7Aiy0Rs2fOgoF+r41P5nTSkh7mIR981lU+20gWcE0jeD2ISEQvhNVLWa1HCEAVipI3yiDrVVNt+ueR1uj4TvWd+ox2vdrR/TAn/3e0Flu39X+PV9P3PfQUb6qMXIptSeKCZSvB+QgzzHq0DdTqpaiid7gWRhJrZWGaLOt67f/AfOVyFAXEQAA
+    http_version: 
+  recorded_at: Thu, 05 Apr 2018 17:42:47 GMT
+recorded_with: VCR 4.0.0
