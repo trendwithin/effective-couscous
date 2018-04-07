@@ -1,0 +1,103 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.trendwithin.com/nopage
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip,deflate,identity
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Mechanize/2.7.5 Ruby/2.5.0p0 (http://github.com/sparklemotion/mechanize/)
+      Accept-Charset:
+      - ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Accept-Language:
+      - en-us,en;q=0.5
+      Host:
+      - www.trendwithin.com
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '300'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx/1.12.2
+      Date:
+      - Fri, 06 Apr 2018 21:59:42 GMT
+      Content-Type:
+      - text/html
+      Content-Length:
+      - '1149'
+      Connection:
+      - keep-alive
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6VWbW/bNhD+nl9xZbF1AyLLlp04UWQDa5MgA9J4WANk+xRQEi0xoUSBpO16Rf/7jqJebDcL1k1AYlHkvT13fO6iN54Hn27uP97Cg6JVxRR4MBlO4E4auJarMgXPmx9Fby4XH+7//O0KclMIXLsfgChnNJ0fAT6R4Uaw+Z5w5LuP7kDBDIWSFmxGFFtzzY1Hl4YpAoksDSvNjIyGpNG2c/j3xfvF/aedU3eLX+8ur/44hrvF9eL2dvFA5uBM6ETxyoDZVmjEsM/Gf6Jr6r4S0CqZkdyYKvT9JC0HqV4Jo+ggkYX/pH3FMq5xrQZPmswj34k5f+oIBS+fIVds2WtZDnKpTSFLjYF4VqlVVrCUU1/nVLHUz1jJFBV+Lgsm6FauzCDRmoBiYka02Qqmc8YM2fXaHmiAqI1+c/Y/e/GYF7UntWHnyA5avd0GT+tej0As0+2XesfiYZ+CqoyXYXBSfb7oNr52bwMz2j+fSCFV+HZYP72EVbXEIvCWtOBiG8IvilNxDDdMrJnhCT0GTUvtaab48gUxzf9i4WjyT04ELzpxNnp/GYxe0Pa/nBjuOmHj2uTcME9XNGFhKTd4zXqTPVL5CPadrOGo44LR2aHOlOsKaymEWMjk+UV9wSv6Tnf19T6sxIGMy64n2NKEEEx/6PLaywyMrCwJ8DI7EI5p8pwpyyGeyzq8PUS8V/O66fFk13TnxYA3xHFgecNTk4cwGo73ytImI2c8yzGY6fCbPMVSpUyFUMqS9YhaoQYGjDSEvRrb2YylMbI42HfxIZO01yjyHWFG9iZBnNXAzOoKmR8dRSlfQ312RlpvtBQ8hQAT5r50WA7H4/fT8UVFU4t9CDaeLvBTG3hzN2EIdGXkRU0okaGxYJAwIRrJGRkiteLaVihqqtfOVv1a67TMfHrSUpJRLSVEJkXytqLljASoR1CtkXm7mkCRLl0WLft8tw/zqLfoFKQtTE0QrkRrFnIYBEOLQJPtc8QGCZ3uc/dms9kl75q48RQvsv1G8R0U78i16we3MpODjC8JtCBOz0hTgjMyPidABTa9nQ5CoEceOxDFP9P01xo6xK4L3bY3jwqelaG9oGT+Yxnr6mJfAlfKKrFZb5PmNGEeOt31KczT3sHdatyxhbWCzVo1tYAy+ahu+ldKSQXXHKurGx6w3Eet1SgP5nCfM6hoxgDbIGB3BCHls6WOJcoW9mpCTtcMYsZKbJCFXLP0GKJYgT/PaQrc6HqCgCSnZWb3UI5rMKyoJHZu7B2wKrHlc2EjHqADQetAAyBfKhxBoP7fgw3Y7KXAXov1X8pmVKAxNuswFrR8JsDT2TuaPtZy79pCbwnIjgtOcWstenUUmXezhlOomfnpC33kKbLWZBwMz48hVXZFqPbsmxecTM9GwWR6Oh1Px2fBlBy7EOyRxivy9WfM/uHU0mYbM1X9mztA5g8shhucahAMW4JQKbnmKUsh3tbfP7ppx16YyK/agBt4feQw+ylyL5FvmQ4nRt+NjEd/A0jUQplyCgAA
+    http_version: 
+  recorded_at: Fri, 06 Apr 2018 21:59:42 GMT
+- request:
+    method: get
+    uri: http://www.trendwithin.com/nopage
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip,deflate,identity
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Mechanize/2.7.5 Ruby/2.5.0p0 (http://github.com/sparklemotion/mechanize/)
+      Accept-Charset:
+      - ISO-8859-1,utf-8;q=0.7,*;q=0.7
+      Accept-Language:
+      - en-us,en;q=0.5
+      Host:
+      - www.trendwithin.com
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '300'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx/1.12.2
+      Date:
+      - Fri, 06 Apr 2018 21:59:43 GMT
+      Content-Type:
+      - text/html
+      Content-Length:
+      - '1149'
+      Connection:
+      - keep-alive
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6VWbW/bNhD+nl9xZbF1AyLLlp04UWQDa5MgA9J4WANk+xRQEi0xoUSBpO16Rf/7jqJebDcL1k1AYlHkvT13fO6iN54Hn27uP97Cg6JVxRR4MBlO4E4auJarMgXPmx9Fby4XH+7//O0KclMIXLsfgChnNJ0fAT6R4Uaw+Z5w5LuP7kDBDIWSFmxGFFtzzY1Hl4YpAoksDSvNjIyGpNG2c/j3xfvF/aedU3eLX+8ur/44hrvF9eL2dvFA5uBM6ETxyoDZVmjEsM/Gf6Jr6r4S0CqZkdyYKvT9JC0HqV4Jo+ggkYX/pH3FMq5xrQZPmswj34k5f+oIBS+fIVds2WtZDnKpTSFLjYF4VqlVVrCUU1/nVLHUz1jJFBV+Lgsm6FauzCDRmoBiYka02Qqmc8YM2fXaHmiAqI1+c/Y/e/GYF7UntWHnyA5avd0GT+tej0As0+2XesfiYZ+CqoyXYXBSfb7oNr52bwMz2j+fSCFV+HZYP72EVbXEIvCWtOBiG8IvilNxDDdMrJnhCT0GTUvtaab48gUxzf9i4WjyT04ELzpxNnp/GYxe0Pa/nBjuOmHj2uTcME9XNGFhKTd4zXqTPVL5CPadrOGo44LR2aHOlOsKaymEWMjk+UV9wSv6Tnf19T6sxIGMy64n2NKEEEx/6PLaywyMrCwJ8DI7EI5p8pwpyyGeyzq8PUS8V/O66fFk13TnxYA3xHFgecNTk4cwGo73ytImI2c8yzGY6fCbPMVSpUyFUMqS9YhaoQYGjDSEvRrb2YylMbI42HfxIZO01yjyHWFG9iZBnNXAzOoKmR8dRSlfQ312RlpvtBQ8hQAT5r50WA7H4/fT8UVFU4t9CDaeLvBTG3hzN2EIdGXkRU0okaGxYJAwIRrJGRkiteLaVihqqtfOVv1a67TMfHrSUpJRLSVEJkXytqLljASoR1CtkXm7mkCRLl0WLft8tw/zqLfoFKQtTE0QrkRrFnIYBEOLQJPtc8QGCZ3uc/dms9kl75q48RQvsv1G8R0U78i16we3MpODjC8JtCBOz0hTgjMyPidABTa9nQ5CoEceOxDFP9P01xo6xK4L3bY3jwqelaG9oGT+Yxnr6mJfAlfKKrFZb5PmNGEeOt31KczT3sHdatyxhbWCzVo1tYAy+ahu+ldKSQXXHKurGx6w3Eet1SgP5nCfM6hoxgDbIGB3BCHls6WOJcoW9mpCTtcMYsZKbJCFXLP0GKJYgT/PaQrc6HqCgCSnZWb3UI5rMKyoJHZu7B2wKrHlc2EjHqADQetAAyBfKhxBoP7fgw3Y7KXAXov1X8pmVKAxNuswFrR8JsDT2TuaPtZy79pCbwnIjgtOcWstenUUmXezhlOomfnpC33kKbLWZBwMz48hVXZFqPbsmxecTM9GwWR6Oh1Px2fBlBy7EOyRxivy9WfM/uHU0mYbM1X9mztA5g8shhucahAMW4JQKbnmKUsh3tbfP7ppx16YyK/agBt4feQw+ylyL5FvmQ4nRt+NjEd/A0jUQplyCgAA
+    http_version: 
+  recorded_at: Fri, 06 Apr 2018 21:59:43 GMT
+recorded_with: VCR 4.0.0
