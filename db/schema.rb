@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180405213314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "daily_high_lows", force: :cascade do |t|
+    t.integer "one_month_high", null: false
+    t.integer "one_month_low", null: false
+    t.integer "three_month_high", null: false
+    t.integer "three_month_low", null: false
+    t.integer "six_month_high", null: false
+    t.integer "six_month_low", null: false
+    t.integer "fifty_two_week_high", null: false
+    t.integer "fifty_two_week_low", null: false
+    t.integer "all_time_high", null: false
+    t.integer "all_time_low", null: false
+    t.integer "year_to_date_high", null: false
+    t.integer "year_to_date_low", null: false
+    t.date "market_close_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["market_close_date"], name: "index_daily_high_lows_on_market_close_date", unique: true
+  end
 
 end
