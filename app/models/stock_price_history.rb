@@ -1,0 +1,2 @@
+class StockPriceHistory < ApplicationRecord
+end
