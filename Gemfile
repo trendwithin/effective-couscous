@@ -7,6 +7,7 @@ end
 
 # Project Gems
 gem 'mechanize', '~> 2.7', '>= 2.7.5'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
