@@ -62,6 +62,12 @@ module DataServer
         assert_equal count, all_records
       end
 
+      def test_empty_active_relation
+        all_records = StockSymbol.none
+        result = @parse_symbols.all_stocks_symbols_to_array all_records
+        assert_equal [], result
+      end
+
       def test_all_stock_tickers_returns_array
         all_records = StockSymbol.all
         record_one = 'XYZ'
@@ -78,14 +84,31 @@ module DataServer
         assert_equal expected, results
       end
 
+      def test_collect_stock_symbols_emtpy_active_record
+        all_records = StockSymbol.none.to_a
+        formatted_input = ["A Agilient Technologies", "AA Alcoa Corp", "AAC Aac Holdings Inc"]
+        collected_symbols = @parse_symbols.collect_stock_symbols formatted_input, all_records
+        assert_equal formatted_input, collected_symbols
+      end
+
       def test_store_stock_symbols
         input = ['AA:Alcoa']
-        @parse_symbols.store_new_stocks_symbols input
+        formatted_input = @parse_symbols.gsub_colon_for_space input
+        @parse_symbols.store_new_stocks_symbols formatted_input
         assert_equal 3, StockSymbol.all.count
 
         all_records = StockSymbol.all
         result = @parse_symbols.all_stocks_symbols_to_array all_records
         assert_equal true, result.include?('AA')
+      end
+
+      def test_multiple_spaced_company_names_insert_correctly
+        formatted_input = ["AAC Aac Holdings Inc"]
+        expected = "Aac Holdings Inc"
+        @parse_symbols.store_new_stocks_symbols formatted_input
+        record = StockSymbol.find_by_ticker "AAC"
+        assert_equal expected, record.company_name
+
       end
 
       # I don't control incoming data- Can I assume this potential error?
