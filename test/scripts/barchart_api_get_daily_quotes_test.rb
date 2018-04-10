@@ -38,15 +38,16 @@ module Barchart
       def test_parse_returned_api_data_format
         expected =
           {
+          market_close_date: DateTime.now.strftime("%d-%m-%Y"),
           ticker: "AAPL",
-          name: "Apple Inc",
+          company_name: "Apple Inc",
           open: 169.88,
           high: 173.09,
           low: 169.85,
           close: 170.05,
-          lastPrice: 170.05,
-          netChange: 1.67,
-          percentChange: 0.99,
+          last_price: 170.05,
+          percent_change: 0.99,
+          net_change: 1.67,
           volume: 28970520
           }
 
@@ -54,7 +55,6 @@ module Barchart
         @response_body['results'].map do |elem|
           obj = elem if elem['symbol'] == 'AAPL'
         end
-
         result = @api_connection.parse_data_from_api_response obj
         assert_equal expected, result
       end
