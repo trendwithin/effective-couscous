@@ -1,7 +1,9 @@
-require 'test_helper'
+require './test/test_helper'
+require 'barchart_api_connect'
 require 'barchart_api_parser'
+
 module Barchart
-  module BarchartApiParser
+  module BarchartApiConnect
     class BarchartApiParserHistoricalDataTest < ActiveSupport::TestCase
       def setup
         VCR.use_cassette('barchart_historical_data') do
@@ -9,7 +11,7 @@ module Barchart
                  ENV['barchart_api_key'] + "&symbol=IBM&type=daily&startDate=20170408000000"
 
           @api_connection = Object.new
-          @api_connection.extend(Barchart::BarchartApiParser)
+          @api_connection.extend(Barchart::BarchartApiConnect)
           @page = @api_connection.fetch_url url
           @response_body = @api_connection.parse_response_body(@page)
         end
@@ -36,7 +38,7 @@ module Barchart
       # nb: Descrepency between daily/historical api return
       def test_parse_historical_data_from_api_response
         result = @response_body['results'].last
-        format_result = @api_connection.parse_historical_data_from_api_response result
+        format_result = Barchart::BarchartApiParser.parse_historical_data_from_api_response result
         expected =
           {
             market_close_date: "2018-04-10",
@@ -52,6 +54,26 @@ module Barchart
             volume: 3955900
           }
           assert_equal expected, format_result
+      end
+
+      def test_malformed_data_errors
+        record = @response_body['results'].first
+        record['open'] = nil
+        malformed_record = { "results" => [record] }
+        result = Barchart::BarchartApiParser.map_response_and_return_historical_record malformed_record
+        assert_equal 1, result[:errors]
+        assert_equal 0, result[:success]
+
+      end
+
+      def test_duplicate_record_raises_error
+        record = @response_body['results'].first
+        duplicate = { "results" => [record] }
+        result = Barchart::BarchartApiParser.map_response_and_return_historical_record duplicate
+        assert_equal 1, result[:success]
+        assert_raises ActiveRecord::RecordInvalid do
+          result = Barchart::BarchartApiParser.map_response_and_return_historical_record duplicate
+        end
       end
     end
   end
