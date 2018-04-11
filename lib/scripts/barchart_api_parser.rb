@@ -5,27 +5,7 @@ module Barchart
   module BarchartApiParser
     extend self
 
-    def fetch_url url, max_attempts = 5
-      tries ||= 0
-      Mechanize.new.get url
-      rescue SocketError => se
-        if (tries += 1) <= max_attempts
-          retry
-        else
-          raise se
-        end
-      rescue Mechanize::ResponseCodeError => rce
-        if (tries += 1) <= max_attempts
-          retry
-        else
-          raise rce
-        end
-    end
-
-    def parse_response_body page
-      JSON.parse(page.body)
-    end
-
+    # Consider a Refactor as method call for insert= only difference
     def map_response_and_return_formatted_record response_body
       results = { success: 0, errors: 0 }
       response_body['results'].map do |obj|
@@ -33,7 +13,7 @@ module Barchart
         begin
           StockPriceHistory.create!(insert)
           results[:success] += 1
-        rescue ActiveRecord::NotNullViolation => record_not_null
+        rescue ActiveRecord::NotNullViolation => active_record_not_null
           results[:errors] += 1
         rescue PG::NotNullViolation => pg_not_null
           results[:errors] += 1
@@ -49,7 +29,7 @@ module Barchart
         begin
           StockPriceHistory.create!(insert)
           results[:success] += 1
-        rescue ActiveRecord::NotNullViolation => record_not_null
+        rescue ActiveRecord::NotNullViolation => active_record_not_null
           results[:errors] += 1
         rescue PG::NotNullViolation => pg_not_null
           results[:errors] += 1
