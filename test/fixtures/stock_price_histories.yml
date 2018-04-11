@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  market_close_date: <%= Time.now %>
+  ticker: MyString
+  company_name: MyString
+  open: 9.99
+  high: 9.99
+  low: 9.99
+  close: 9.99
+  last_price: 9.99
+  percent_change: 9.99
+  net_change: 9.99
+  volume: 1

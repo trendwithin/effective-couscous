@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408235540) do
+ActiveRecord::Schema.define(version: 20180409232316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(version: 20180408235540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["market_close_date"], name: "index_daily_high_lows_on_market_close_date", unique: true
+  end
+
+  create_table "stock_price_histories", force: :cascade do |t|
+    t.date "market_close_date", null: false
+    t.string "ticker", null: false
+    t.string "company_name"
+    t.decimal "open", precision: 16, scale: 4, null: false
+    t.decimal "high", precision: 16, scale: 4, null: false
+    t.decimal "low", precision: 16, scale: 4, null: false
+    t.decimal "close", precision: 16, scale: 4, null: false
+    t.decimal "last_price", precision: 16, scale: 4, null: false
+    t.decimal "percent_change", precision: 16, scale: 4, null: false
+    t.decimal "net_change", precision: 16, scale: 4, null: false
+    t.integer "volume", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["market_close_date", "ticker"], name: "index_stock_price_histories_on_market_close_date_and_ticker", unique: true
   end
 
   create_table "stock_symbols", force: :cascade do |t|
