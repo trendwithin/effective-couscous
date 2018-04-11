@@ -4,6 +4,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'webmock/minitest'
 require 'vcr'
+require 'rake'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -19,4 +20,15 @@ class ActiveSupport::TestCase
   end
 
   # Add more helper methods to be used by all tests here...
+  def one_hundred_symbols
+    ["A", "AA", "AAC", "AAN", "AAP", "AAT", "AAV", "AB", "ABB", "ABBV", "ABC", "ABEV", "ABG",
+     "ABM", "ABR", "ABR-A", "ABR-B", "ABR-C", "ABRN", "ABT", "ABX", "AC", "ACC", "ACCO", "ACH",
+     "ACM", "ACN", "ACP", "ACRE", "ACV", "ADC", "ADM", "ADNT", "ADS", "ADSW", "ADT", "ADX", "AEB",
+     "AED", "AEE", "AEG", "AEH", "AEK", "AEL", "AEM", "AEO", "AEP", "AER", "AES", "AET", "AEUA",
+     "AFB", "AFC", "AFG", "AFGE", "AFGH", "AFI", "AFL", "AFS-A", "AFS-B", "AFS-C", "AFS-D", "AFS-E",
+     "AFS-F", "AFSS", "AFST", "AFT", "AG", "AGC", "AGCO", "AGD", "AGI", "AGM", "AGM-A", "AGM-B",
+     "AGM-C", "AGM.A", "AGN", "AGN-A", "AGO", "AGO-B", "AGO-E", "AGO-F", "AGR", "AGRO", "AGS", "AGX",
+     "AHC", "AHH", "AHL", "AHL-C", "AHL-D", "AHP", "AHP-B", "AHT", "AHT-D", "BKE", "AHT-F", "AHT-G",
+     "AHT-H"]
+  end
 end
