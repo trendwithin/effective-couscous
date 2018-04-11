@@ -39,7 +39,7 @@ module Barchart
         format_result = @api_connection.parse_historical_data_from_api_response result
         expected =
           {
-            market_close_date: DateTime.now.strftime("%d-%m-%Y"),
+            market_close_date: "2018-04-10",
             ticker: "IBM",
             company_name: "DEFAULT",
             open: 155.03,
