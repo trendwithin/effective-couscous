@@ -1,15 +1,16 @@
-require 'test_helper'
-require 'barchart_api_parser'
+require './test/test_helper'
+require 'barchart_api_connect'
+
 module Barchart
   module BarchartApiConnect
-    class BarchartApiParserTest < ActiveSupport::TestCase
+    class BarchartApiConnectionTest < ActiveSupport::TestCase
       def setup
         VCR.use_cassette('api_connection_verification') do
           url = "https://marketdata.websol.barchart.com/getHistory.json?apikey=" +
                  ENV['barchart_api_key'] + "&symbol=IBM&type=daily&startDate=20170408000000"
 
           @api_connection = Object.new
-          @api_connection.extend(Barchart::BarchartApiParser)
+          @api_connection.extend(Barchart::BarchartApiConnect)
           @page = @api_connection.fetch_url url
           @response_body = @api_connection.parse_response_body(@page)
         end
@@ -28,7 +29,7 @@ module Barchart
       end
 
       def test_full_year_data_returned
-        expected = 250
+        expected = 252
         count = @response_body['results'].count
         assert_equal expected, count
       end

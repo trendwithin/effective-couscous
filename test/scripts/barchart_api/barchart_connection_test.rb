@@ -1,13 +1,13 @@
-require 'test_helper'
+require './test/test_helper'
 require 'minitest/mock'
-require 'barchart'
+require 'barchart_api_connect'
 
 module Barchart
-  module BarchartDataParser
+  module BarchartApiConnect
     class BarchartConnectionTest < ActiveSupport::TestCase
       def setup
         @connection = Object.new
-        @connection.extend(Barchart::BarchartDataParser)
+        @connection.extend(Barchart::BarchartApiConnect)
         @valid_url = 'http://example.com'
       end
 

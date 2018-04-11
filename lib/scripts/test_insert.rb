@@ -10,5 +10,5 @@ Barchart::BarchartUrls.barchart_urls.each do |key, value|
   count = Barchart::BarchartDataParser.parse_total response_body
   record[key] = count
 end
-
+DailyHighLow.save
 puts record.valid?

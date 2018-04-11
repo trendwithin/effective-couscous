@@ -1,17 +1,19 @@
-require 'test_helper'
+require './test/test_helper'
+require 'barchart_api_connect'
 require 'barchart_api_parser'
+
 module Barchart
   module BarchartApiConnect
-    class BarchartAGetChunkedDailyQuote < ActiveSupport::TestCase
+    class BarchartApiGetChunkedDailyDataQuote < ActiveSupport::TestCase
       def setup
         @data = one_hundred_symbols
         chunked = @data.each_slice(100).to_a
         symbols = chunked.join(',')
-        VCR.use_cassette('daily_data_requrest') do
+        VCR.use_cassette('daily_data_request') do
           url = "https://marketdata.websol.barchart.com/getQuote.json?apikey=" +
                 ENV['barchart_api_key'] + "&symbols=#{symbols}"
           @api_connection = Object.new
-          @api_connection.extend(Barchart::BarchartApiParser)
+          @api_connection.extend(Barchart::BarchartApiConnect)
           @page = @api_connection.fetch_url url
           @response_body = @api_connection.parse_response_body(@page)
         end
@@ -37,7 +39,7 @@ module Barchart
 
       def test_malformed_record_returns_error
         record = @response_body['results'].first
-        parsed = @api_connection.parse_data_from_api_response record
+        parsed = Barchart::BarchartApiParser.parse_data_from_api_response record
         parsed[:open] = nil
         assert_raises ActiveRecord::NotNullViolation do
           StockPriceHistory.create!(parsed)
@@ -45,7 +47,7 @@ module Barchart
       end
 
       def test_malformed_record_returns_error_count
-        results = @api_connection.map_response_and_return_formatted_record @response_body
+        results = Barchart::BarchartApiParser.map_response_and_return_formatted_record @response_body
         assert_equal 8, results[:errors]
         assert_equal 92, results[:success]
       end
