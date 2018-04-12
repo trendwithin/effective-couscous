@@ -30,6 +30,27 @@ module DataServer
       body.split( /\r?\n/ )
     end
 
+    def prune_duplicates_from_source nyse, amex, nasdaq
+      total_listing = []
+      nyse.each { |e| total_listing << e }
+      amex.each { |e| total_listing << e }
+      nasdaq.each { |e| total_listing << e }
+      total_listing.uniq
+    end
+
+    def colon_separated_value record
+      "#{record.ticker}:#{record.company_name}"
+    end
+
+    def prune_duplicates_from_model array, ar_relation
+      return array if ar_relation.nil?
+      formatted_records = []
+      ar_relation.map do |record|
+        formatted_records << colon_separated_value(record)
+      end
+      array - formatted_records
+    end
+
     def gsub_colon_for_space array
       new_array = []
       array.map do |elem|
