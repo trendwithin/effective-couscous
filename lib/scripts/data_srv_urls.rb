@@ -3,7 +3,11 @@ module DataServer
     extend self
 
     def data_server_urls
-      'http://datasrv.ddfplus.com/names/nyse.txt'
+      urls = {
+        nyse:   'http://datasrv.ddfplus.com/names/nyse.txt',
+        nasdaq: 'http://datasrv.ddfplus.com/names/nasd.txt',
+        amex: 'http://datasrv.ddfplus.com/names/amex.txt'
+      }
     end
   end
 end
