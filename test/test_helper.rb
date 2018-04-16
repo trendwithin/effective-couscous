@@ -31,4 +31,21 @@ class ActiveSupport::TestCase
      "AHC", "AHH", "AHL", "AHL-C", "AHL-D", "AHP", "AHP-B", "AHT", "AHT-D", "BKE", "AHT-F", "AHT-G",
      "AHT-H"]
   end
+
+  def year_of_data
+    data = []
+    250.times do |elem|
+      volume = rand(1..100)
+      market_close_date = (DateTime.now - elem).strftime("%Y-%m-%d")
+      close = rand(10..25)
+
+      data << {
+        "ticker"=>"TESTER",
+        "volume"=> volume,
+        "market_close_date"=> market_close_date,
+        close: close
+      }
+    end
+    data.reverse
+  end
 end
