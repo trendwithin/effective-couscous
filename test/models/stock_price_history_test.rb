@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class StockPriceHistoryTest < ActiveSupport::TestCase
+  include StockPriceHistoryConcern
+
   def setup
     @record = stock_price_histories(:one)
   end
@@ -86,5 +88,24 @@ class StockPriceHistoryTest < ActiveSupport::TestCase
     assert_raises ActiveRecord::NotNullViolation do
       @record.save
     end
+  end
+
+  test 'most recent data point represents max value over 250 periods' do
+    years_data = year_of_data
+    years_data.first["volume"] = 10_000
+    years_data.last["volume"]= 10_0001
+    assert_equal true, find_year_high_value(years_data)
+  end
+
+  test 'most recent data point does not represent max value over 250 periods' do
+    years_data = year_of_data
+    years_data.first['volume'] = 10_000
+    assert_equal false, find_year_high_value(years_data)
+  end
+
+  test 'midpoint represents highest data point over 250 periods' do
+    years_data = year_of_data
+    years_data[125]['volume'] = 10_000
+    assert_equal false, find_year_high_value(years_data)
   end
 end
