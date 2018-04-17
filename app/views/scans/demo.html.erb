@@ -1,3 +1,19 @@
 <div class="row">
   <h1 class='center'>Demo</h1>
+  <% @display.each do |elem| %>
+    <div class="row">
+      <div class="col span-1-of-3">
+        <%= elem['ticker'] %>
+      </div>
+      <div class="col span-1-of-3">
+        <%= elem['volume'] %>
+      </div>
+      <div class="col span-1-of-3">
+        <%= elem['market_close_date'] %>
+      </div>
+    </div>
+  <% end %>
 </div>
+<% if @display.empty? %>
+  <h1>No Records Found</h1>
+<% end %>
