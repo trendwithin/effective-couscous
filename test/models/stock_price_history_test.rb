@@ -108,4 +108,17 @@ class StockPriceHistoryTest < ActiveSupport::TestCase
     years_data[125]['volume'] = 10_000
     assert_equal false, find_year_high_value(years_data)
   end
+
+  test 'pg result to array mock data check' do
+    expected = 750
+    result_array = pg_result_obj
+    assert_equal expected, result_array.count
+  end
+
+  test 'pg result array sliced' do
+    input = pg_result_obj
+    expected = 3
+    result = pg_result_slice input, 250
+    assert_equal expected, result.count
+  end
 end
