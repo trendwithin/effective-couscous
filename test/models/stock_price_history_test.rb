@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class StockPriceHistoryTest < ActiveSupport::TestCase
-  include StockPriceHistoryConcern
 
   def setup
     @record = stock_price_histories(:one)
@@ -88,37 +87,5 @@ class StockPriceHistoryTest < ActiveSupport::TestCase
     assert_raises ActiveRecord::NotNullViolation do
       @record.save
     end
-  end
-
-  test 'most recent data point represents max value over 250 periods' do
-    years_data = year_of_data
-    years_data.first["volume"] = 10_000
-    years_data.last["volume"]= 10_0001
-    assert_equal true, find_year_high_value(years_data)
-  end
-
-  test 'most recent data point does not represent max value over 250 periods' do
-    years_data = year_of_data
-    years_data.first['volume'] = 10_000
-    assert_equal false, find_year_high_value(years_data)
-  end
-
-  test 'midpoint represents highest data point over 250 periods' do
-    years_data = year_of_data
-    years_data[125]['volume'] = 10_000
-    assert_equal false, find_year_high_value(years_data)
-  end
-
-  test 'pg result to array mock data check' do
-    expected = 750
-    result_array = pg_result_obj
-    assert_equal expected, result_array.count
-  end
-
-  test 'pg result array sliced' do
-    input = pg_result_obj
-    expected = 3
-    result = pg_result_slice input, 250
-    assert_equal expected, result.count
   end
 end
