@@ -4,7 +4,7 @@ class StockPriceHistory < ApplicationRecord
 
   def self.fetch_closing_data
     sql = <<~HEREDOC
-      SELECT ticker, volume, market_close_date from (
+      SELECT ticker, volume, market_close_date, close from (
         SELECT t.*, row_number()
         OVER (PARTITION BY ticker order by market_close_date desc)
         as rno

@@ -9,9 +9,9 @@ module ScanRelatedConcerns
     dupe = records.dup
     first_value = records.first["#{field}"]
     last_value = records.last["#{field}"]
-    last_bool = dupe.max_by{ |k| k['volume'] }['volume'] == dupe.last['volume']
+    last_bool = dupe.max_by{ |k| k["#{field}"] }["#{field}"] == dupe.last["#{field}"]
     dupe.pop
-    first_bool = dupe.max_by { |k| k['volume']}['volume'] == dupe.first['volume']
+    first_bool = dupe.max_by { |k| k["#{field}"]}["#{field}"] == dupe.first["#{field}"]
     last_bool && first_bool
   end
 end
