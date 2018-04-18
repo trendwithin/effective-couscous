@@ -45,4 +45,26 @@ class ScansControllerTest < ActionDispatch::IntegrationTest
     result = most_recent_record_max_high? years_data, 'volume'
     assert_equal false, result
   end
+
+  test 'most recent data point represents max close value over 250 periods' do
+    years_data = year_of_data
+    years_data.first["close"] = 10_000
+    years_data.last["close"]= 10_0001
+    result = most_recent_record_max_high? years_data, "close"
+    assert_equal true, result
+  end
+
+  test 'most recent data point does not represent max close value over 250 periods' do
+    years_data = year_of_data
+    years_data.first['close'] = 10_000
+    result = most_recent_record_max_high? years_data, 'close'
+    assert_equal false, result
+  end
+
+  test 'midpoint represents highest close data point over 250 periods' do
+    years_data = year_of_data
+    years_data[125]['close'] = 10_000
+    result = most_recent_record_max_high? years_data, 'close'
+    assert_equal false, result
+  end
 end

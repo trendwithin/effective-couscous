@@ -43,7 +43,7 @@ class ActiveSupport::TestCase
         "ticker"=>"TESTER",
         "volume"=> volume,
         "market_close_date"=> market_close_date,
-        close: close
+        "close" => close
       }
     end
     data.reverse
