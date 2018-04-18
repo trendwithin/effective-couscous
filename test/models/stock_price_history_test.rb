@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class StockPriceHistoryTest < ActiveSupport::TestCase
+
   def setup
     @record = stock_price_histories(:one)
   end
