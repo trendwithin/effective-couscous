@@ -1,5 +1,5 @@
 class StockPriceHistory < ApplicationRecord
-  include StockPriceHistoryConcern
+
   validates_uniqueness_of :market_close_date, scope: :ticker
 
   def self.fetch_closing_data

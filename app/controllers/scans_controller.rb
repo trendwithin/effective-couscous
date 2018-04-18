@@ -1,19 +1,12 @@
 class ScansController < ApplicationController
+  include ScanRelatedConcerns
+
   def demo
     @display = []
     demo_data = StockPriceHistory.fetch_closing_data
-    sliced_data = StockPriceHistoryConcern.pg_result_slice demo_data, 250
-    sliced_data.each do |elem|
-      @display << elem.first if find_year_high_value elem
+    slice_data = split_records demo_data, 250
+    slice_data.each do |elem|
+      @display << elem if most_recent_record_max_high? elem, 'volume'
     end
-  end
-
-  def find_year_high_value data
-    first_value = data.first['volume']
-    last_value = data.last['volume']
-    last_bool = data.max_by{ |k| k['volume'] }['volume'] == data.last['volume']
-    data.pop
-    first_bool = data.max_by { |k| k['volume']}['volume'] == data.first['volume']
-    last_bool && first_bool
   end
 end
