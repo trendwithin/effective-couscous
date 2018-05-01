@@ -2,16 +2,12 @@
   <section class="col span-1-of-3">
     <h3>Year High Volume</h3>
     <hr>
-    <% @years_highest_volume.each do |elem| %>
-      <%= elem %>
-    <% end %>
+    <%= render_unless_empty @years_highest_volume %>
   </section>
   <section class="col span-1-of-3">
     <h3>First 250 Period Closing High</h3>
     <hr>
-    <% @years_highest_close.each do |elem| %>
-      <%= elem %>
-    <% end %>
+    <%= render_unless_empty @years_highest_volume %>
   </section>
   <section class="col span-1-of-3"></section>
 </div>
