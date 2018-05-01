@@ -17,6 +17,9 @@ module Barchart
           results[:errors] += 1
         rescue PG::NotNullViolation => pg_not_null
           results[:errors] += 1
+        rescue ActiveRecord::RecordInvalid => invalid
+          Rails.logger.error "Potential Duplicate Daily Price Data: " +
+            obj["symbol"]
         end
       end
       results
@@ -33,6 +36,9 @@ module Barchart
           results[:errors] += 1
         rescue PG::NotNullViolation => pg_not_null
           results[:errors] += 1
+        rescue ActiveRecord::RecordInvalid => invalid
+          Rails.logger.errors "Potential Duplicate Historical Price Data: " +
+            obj["symbols"] + " invalid"
         end
       end
       results
