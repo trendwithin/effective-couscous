@@ -71,9 +71,8 @@ module Barchart
         duplicate = { "results" => [record] }
         result = Barchart::BarchartApiParser.map_response_and_return_historical_record duplicate
         assert_equal 1, result[:success]
-        assert_raises ActiveRecord::RecordInvalid do
-          result = Barchart::BarchartApiParser.map_response_and_return_historical_record duplicate
-        end
+        dupe_result = Barchart::BarchartApiParser.map_response_and_return_historical_record duplicate
+        assert_equal 1, dupe_result[:errors]
       end
     end
   end

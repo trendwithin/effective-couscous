@@ -73,9 +73,8 @@ module Barchart
         record = @response_body['results'].first
         duplicate = { "results" => [record] }
         Barchart::BarchartApiParser.map_response_and_return_formatted_record duplicate
-        assert_raises ActiveRecord::RecordInvalid do
-          Barchart::BarchartApiParser.map_response_and_return_formatted_record duplicate
-        end
+        duplicate = Barchart::BarchartApiParser.map_response_and_return_formatted_record duplicate
+        assert_equal 1, duplicate[:errors]
       end
     end
   end
