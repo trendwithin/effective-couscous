@@ -13,6 +13,7 @@ class ActiveSupport::TestCase
   VCR.configure do |config|
     config.cassette_library_dir = 'test/cassettes/vcr_cassettes'
     config.hook_into :webmock
+    config.allow_http_connections_when_no_cassette = true
 
     config.filter_sensitive_data("<REDACTED>") do
       ENV['barchart_api_key']
