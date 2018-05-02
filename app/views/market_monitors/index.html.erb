@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class='center-text'>Market Monitor</h1>
+<div id="index-market-monitor">
+  <table>
+    <thead>
+      <th>Market Close</th>
+      <th>+4% Daily</th>
+      <th>-4% Daily</th>
+      <th>+25% Quater</th>
+      <th>-25% Quarter</th>
+      <th>+25% Month</th>
+      <th>-25% Month</th>
+      <th>+13% Quarter</th>
+      <th>-13% Quarter</th>
+      <th>+50% Month</th>
+      <th>-50% Month</th>
+      <th>Total Stocks</th>
+      <th colspan="3"></th>
+    </thead>
+    <tbody>
+      <% @market_monitors.each do |market_monitor| %>
+        <tr>
+          <td><%= market_monitor.market_close_date %></td>
+          <td><%= market_monitor.up_four_pct_daily %></td>
+          <td><%= market_monitor.down_four_pct_daily %></td>
+          <td><%= market_monitor.up_twenty_five_pct_quarter %></td>
+          <td><%= market_monitor.down_twenty_five_pct_quarter %></td>
+          <td><%= market_monitor.up_twenty_five_pct_month %></td>
+          <td><%= market_monitor.down_twenty_five_pct_month %></td>
+          <td><%= market_monitor.up_thirteen_pct_quarter %></td>
+          <td><%= market_monitor.down_thirteen_pct_quarter %></td>
+          <td><%= market_monitor.up_fifty_pct_month %></td>
+          <td><%= market_monitor.down_fifty_pct_month %></td>
+          <td><%= market_monitor.total_stocks %></td>
+          <td><%= link_to 'Show', market_monitor %></td>
+          <td><%= link_to 'Edit', edit_market_monitor_path(market_monitor) %></td>
+          <td><%= link_to 'Destroy', market_monitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+
+<%= link_to 'New Market Monitor', new_market_monitor_path %>

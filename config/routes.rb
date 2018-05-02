@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :market_monitors
   get 'scans/demo'
 
   root 'pages#frontpage'

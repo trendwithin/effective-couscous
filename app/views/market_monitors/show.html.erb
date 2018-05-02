@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<div id="show-market-monitor">
+  <table>
+    <thead>
+      <th>Market Close</th>
+      <th>+4% Daily</th>
+      <th>-4% Daily</th>
+      <th>+25% Quater</th>
+      <th>-25% Quarter</th>
+      <th>+25% Month</th>
+      <th>-25% Month</th>
+      <th>+13% Quarter</th>
+      <th>-13% Quarter</th>
+      <th>+50% Month</th>
+      <th>-50% Month</th>
+      <th>Total Stocks</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @market_monitor.market_close_date %></td>
+        <td><%= @market_monitor.up_four_pct_daily %></td>
+        <td><%= @market_monitor.down_four_pct_daily %></td>
+        <td><%= @market_monitor.up_twenty_five_pct_quarter %></td>
+        <td><%= @market_monitor.down_twenty_five_pct_quarter %></td>
+        <td><%= @market_monitor.up_twenty_five_pct_month %></td>
+        <td><%= @market_monitor.down_twenty_five_pct_month %></td>
+        <td><%= @market_monitor.up_thirteen_pct_quarter %></td>
+        <td><%= @market_monitor.down_thirteen_pct_quarter %></td>
+        <td><%= @market_monitor.up_fifty_pct_month %></td>
+        <td><%= @market_monitor.down_fifty_pct_month %></td>
+        <td><%= @market_monitor.total_stocks %></td>
+      </tr>
+    </tbody>
+  </table>
+  <article class="notes">
+    <p>
+      <h4>Notes:</h4>
+      <hr>
+      <%= @market_monitor.notes %>
+    </p>
+  </article>
+  <section class="form-buttons">
+    <%= link_to 'Edit', edit_market_monitor_path(@market_monitor), class: 'btn btn-edit' %> |
+    <%= link_to 'Back', market_monitors_path, class: 'btn btn-back' %>
+  </section>
+</div>

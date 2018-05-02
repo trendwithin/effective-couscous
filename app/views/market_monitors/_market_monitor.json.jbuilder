@@ -1,0 +1,2 @@
+json.extract! market_monitor, :id, :market_close_date, :up_four_pct_daily, :down_four_pct_daily, :up_twenty_five_pct_quarter, :down_twenty_five_pct_quarter, :up_twenty_five_pct_month, :down_twenty_five_pct_month, :up_thirteen_pct_quarter, :down_thirteen_pct_quarter, :up_fifty_pct_month, :down_fifty_pct_month, :notes, :created_at, :updated_at
+json.url market_monitor_url(market_monitor, format: :json)
