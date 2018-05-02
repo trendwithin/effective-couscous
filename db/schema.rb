@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409232316) do
+ActiveRecord::Schema.define(version: 20180501212325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,25 @@ ActiveRecord::Schema.define(version: 20180409232316) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["market_close_date"], name: "index_daily_high_lows_on_market_close_date", unique: true
+  end
+
+  create_table "market_monitors", force: :cascade do |t|
+    t.date "market_close_date", null: false
+    t.integer "up_four_pct_daily", null: false
+    t.integer "down_four_pct_daily", null: false
+    t.integer "up_twenty_five_pct_quarter", null: false
+    t.integer "down_twenty_five_pct_quarter", null: false
+    t.integer "up_twenty_five_pct_month", null: false
+    t.integer "down_twenty_five_pct_month", null: false
+    t.integer "up_thirteen_pct_quarter", null: false
+    t.integer "down_thirteen_pct_quarter", null: false
+    t.integer "up_fifty_pct_month", null: false
+    t.integer "down_fifty_pct_month", null: false
+    t.integer "total_stocks", null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["market_close_date"], name: "index_market_monitors_on_market_close_date", unique: true
   end
 
   create_table "stock_price_histories", force: :cascade do |t|

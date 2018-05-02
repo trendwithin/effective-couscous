@@ -1,0 +1,95 @@
+<div class="form-market-monitor">
+  <%= form_with(model: market_monitor, local: true) do |form| %>
+    <% if market_monitor.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(market_monitor.errors.count, "error") %> prohibited this market_monitor from being saved:</h2>
+
+        <ul>
+        <% market_monitor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row color-grey">
+      <div class="col span-1-of-2">
+        <div class="field">
+          <%= form.label :market_close_date %>
+          <%= form.date_select :market_close_date, id: :market_monitor_market_close_date %>
+        </div>
+
+        <div class="field">
+          <%= form.label :up_four_pct_daily %>
+          <%= form.number_field :up_four_pct_daily, id: :market_monitor_up_four_pct_daily %>
+        </div>
+
+        <div class="field">
+          <%= form.label :down_four_pct_daily %>
+          <%= form.number_field :down_four_pct_daily, id: :market_monitor_down_four_pct_daily %>
+        </div>
+
+        <div class="field">
+          <%= form.label :up_twenty_five_pct_quarter %>
+          <%= form.number_field :up_twenty_five_pct_quarter, id: :market_monitor_up_twenty_five_pct_quarter %>
+        </div>
+
+        <div class="field">
+          <%= form.label :down_twenty_five_pct_quarter %>
+          <%= form.number_field :down_twenty_five_pct_quarter, id: :market_monitor_down_twenty_five_pct_quarter %>
+        </div>
+        <div class="field">
+          <%= form.label :up_twenty_five_pct_month %>
+          <%= form.number_field :up_twenty_five_pct_month, id: :market_monitor_up_twenty_five_pct_month %>
+        </div>
+      </div>
+      <div class="class col span-1-of-2">
+
+
+        <div class="field">
+          <%= form.label :down_twenty_five_pct_month %>
+          <%= form.number_field :down_twenty_five_pct_month, id: :market_monitor_down_twenty_five_pct_month %>
+        </div>
+
+        <div class="field">
+          <%= form.label :up_thirteen_pct_quarter %>
+          <%= form.number_field :up_thirteen_pct_quarter, id: :market_monitor_up_thirteen_pct_quarter %>
+        </div>
+
+        <div class="field">
+          <%= form.label :down_thirteen_pct_quarter %>
+          <%= form.number_field :down_thirteen_pct_quarter, id: :market_monitor_down_thirteen_pct_quarter %>
+        </div>
+
+        <div class="field">
+          <%= form.label :up_fifty_pct_month %>
+          <%= form.number_field :up_fifty_pct_month, id: :market_monitor_up_fifty_pct_month %>
+        </div>
+
+        <div class="field">
+          <%= form.label :down_fifty_pct_month %>
+          <%= form.number_field :down_fifty_pct_month, id: :market_monitor_down_fifty_pct_month %>
+        </div>
+
+        <div class="field">
+          <%= form.label :total_stocks %>
+          <%= form.number_field :total_stocks, id: :market_monitor_total_stocks %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-1-of-1">
+        <div class="field">
+          <%= form.label :notes %>
+          <%= form.text_area :notes, id: :market_monitor_notes, cols: 110, rows: 10 %>
+        </div>
+      </div>
+    </div>
+    <div id="edit-monitor-sumbit">
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>

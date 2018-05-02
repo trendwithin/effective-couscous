@@ -1,0 +1,52 @@
+// Place all the styles related to the MarketMonitors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#show-market-monitor,
+#index-market-monitor {
+  table{
+    border-collapse: collapse;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  thead {
+    th {
+      padding: 0.5em;
+    }
+  }
+  td {
+    padding: 0.5em;
+    margin: 0;
+    border: 1px solid black;
+  }
+  article.notes {
+    padding-top: 2em;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  section.form-buttons{
+    margin-left: 10%;
+  }
+  a.btn.btn-edit,
+  a.btn.btn-back {
+    color: white;
+    background-color: teal;
+  }
+}
+
+.form-market-monitor {
+  background-color: #EDF5E1;
+  padding-bottom: 2em;
+}
+
+#edit-monitor-sumbit {
+  margin-left: 35%;
+}
+
+input {
+  font-size: 150%;
+}
+
+textarea {
+  border: solid #000
+}
