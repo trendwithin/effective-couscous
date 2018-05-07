@@ -27,7 +27,7 @@ class ApiConnect
     end
   end
 
-  def parse_page_response_body page_body
-    JSON.parse(page_body)
+  def parse_page_response_body
+    JSON.parse(agent.page.body)
   end
 end
