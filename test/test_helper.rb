@@ -1,5 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
-$LOAD_PATH << File.expand_path('lib/scripts')
+$LOAD_PATH << File.expand_path('barchart', 'lib/scripts')
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'webmock/minitest'
