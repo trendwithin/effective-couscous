@@ -67,7 +67,7 @@ module Barchart
       record = @response_body['results'].first
       record['open'] = nil
       malformed_record = [] << record
-      result = Barchart::BarchartApiParser.insert_daily_history malformed_record
+      result = Barchart::BarchartApiParser.insert_historical_data malformed_record, :daily
       assert_equal 1, result[:errors]
       assert_equal 0, result[:success]
     end
@@ -75,8 +75,8 @@ module Barchart
     def test_uniquness_violation
       record = [] << @response_body['results'].first
       duplicate = record
-      Barchart::BarchartApiParser.insert_daily_history duplicate
-      duplicate = Barchart::BarchartApiParser.insert_daily_history duplicate
+      Barchart::BarchartApiParser.insert_historical_data duplicate, :daily
+      duplicate = Barchart::BarchartApiParser.insert_historical_data duplicate, :daily
       assert_equal 1, duplicate[:errors]
     end
   end
