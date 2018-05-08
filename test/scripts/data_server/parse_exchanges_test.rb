@@ -2,7 +2,6 @@ require './test/test_helper'
 require 'json'
 require 'parse_stock_symbols'
 
-
 module DataServer
   module ParseSymbols
     class ParseExchangeStockSymbolsTest < ActiveSupport::TestCase
