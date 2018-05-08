@@ -11,7 +11,7 @@ module Barchart
 
     def insert_historical_data results, time_period = :daily
       period = time_period == :historical ? "Historical" : "Daily"
-      parse_method = time_period == :historical? ?
+      parse_method = time_period == :historical ?
         "parse_historical_data_from_api_response" : "parse_data_from_api_response"
 
       validations = { success: 0, errors: 0 }
@@ -19,6 +19,7 @@ module Barchart
         insert = send(parse_method, obj)
         begin
           StockPriceHistory.create!(insert)
+          puts 'Inserted'
           validations[:success] += 1
         rescue ActiveRecord::NotNullViolation => active_record_not_null
           validations[:errors] += 1
