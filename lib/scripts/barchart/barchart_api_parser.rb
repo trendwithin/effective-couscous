@@ -5,45 +5,33 @@ module Barchart
   module BarchartApiParser
     extend self
 
-    # Consider a Refactor as method call for insert= only difference
-    def map_response_and_return_formatted_record response_body
-      results = { success: 0, errors: 0 }
-      response_body['results'].map do |obj|
-        insert = parse_data_from_api_response obj
-        begin
-          StockPriceHistory.create!(insert)
-          results[:success] += 1
-        rescue ActiveRecord::NotNullViolation => active_record_not_null
-          results[:errors] += 1
-        rescue PG::NotNullViolation => pg_not_null
-          results[:errors] += 1
-        rescue ActiveRecord::RecordInvalid => invalid
-          results[:errors] += 1
-          Rails.logger.error "Potential Duplicate Daily Price Data: " +
-            obj["symbol"]
-        end
-      end
-      results
+    def response_body_results response_body
+      response_body['results']
     end
 
-    def map_response_and_return_historical_record response_body
-      results = { success: 0, errors: 0 }
-      response_body['results'].map do |obj|
-        insert = parse_historical_data_from_api_response obj
+    def insert_historical_data results, time_period = :daily
+      period = time_period == :historical ? "Historical" : "Daily"
+      parse_method = time_period == :historical ?
+        "parse_historical_data_from_api_response" : "parse_data_from_api_response"
+
+      validations = { success: 0, errors: 0 }
+      results.map do |obj|
+        insert = send(parse_method, obj)
         begin
           StockPriceHistory.create!(insert)
-          results[:success] += 1
+          puts 'Inserted'
+          validations[:success] += 1
         rescue ActiveRecord::NotNullViolation => active_record_not_null
-          results[:errors] += 1
+          validations[:errors] += 1
         rescue PG::NotNullViolation => pg_not_null
-          results[:errors] += 1
+          validations[:errors] += 1
         rescue ActiveRecord::RecordInvalid => invalid
-          results[:errors] += 1
-          Rails.logger.error "Potential Duplicate Historical Price Data: " +
+          validations[:errors] += 1
+          Rails.logger.error "Potential Duplicate #{period} Price Data: " +
             obj["symbol"]
         end
       end
-      results
+      validations
     end
 
     def parse_historical_data_from_api_response obj

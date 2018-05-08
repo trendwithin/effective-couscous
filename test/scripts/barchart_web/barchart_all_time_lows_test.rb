@@ -1,23 +1,25 @@
-require 'test_helper'
+require './test/test_helper'
 require 'json'
-require 'barchart'
+require 'barchart_data_parser'
+require 'api_connect'
 
 module Barchart
   module BarchartDataParser
     class BarchartDataParserAllTimeLowsTest < ActiveSupport::TestCase
       def setup
         VCR.use_cassette('fifty_two_week_all_time_lows') do
-        url = <<~HEREDOC.gsub(/^[\s\t]*|[\s\t]*\n/, '').strip
-        https://core-api.barchart.com/v1/quotes/get?lists=stocks.highslows.current.
-        lows.alltime.us&fields=symbol%2CsymbolName%2ClastPrice%2CpriceChange%2CpercentChange
-        %2ChighPrice%2ClowPrice%2Cvolume%2CtradeTime%2CsymbolCode%2CsymbolType%2ChasOptions
-        &meta=field.shortName%2Cfield.type%2Cfield.description&hasOptions=true&raw=1
-        HEREDOC
+          url = <<~HEREDOC.gsub(/^[\s\t]*|[\s\t]*\n/, '').strip
+          https://core-api.barchart.com/v1/quotes/get?lists=stocks.highslows.current.
+          lows.alltime.us&fields=symbol%2CsymbolName%2ClastPrice%2CpriceChange%2CpercentChange
+          %2ChighPrice%2ClowPrice%2Cvolume%2CtradeTime%2CsymbolCode%2CsymbolType%2ChasOptions
+          &meta=field.shortName%2Cfield.type%2Cfield.description&hasOptions=true&raw=1
+          HEREDOC
 
-        @data_parser = Object.new
-        @data_parser.extend(Barchart::BarchartDataParser)
-        @page = @data_parser.fetch_url url
-        @response_body = @data_parser.parse_response_body(@page)
+          @data_parser = Object.new
+          @data_parser.extend(Barchart::BarchartDataParser)
+          @api_connection = ApiConnect.new(url)
+          @page = @api_connection.fetch_page_body
+          @response_body = @api_connection.parse_page_response_body
         end
       end
 
@@ -73,10 +75,17 @@ module Barchart
         assert_equal expected_total, total
       end
 
+      def test_parse_body_data
+        expected = @response_body['data']
+        result = @data_parser.parse_data @response_body
+        assert_equal expected, result
+      end
+
       def test_parse_stock_symbols
         expected_stock_symbols = [['BLNK'], ["TRVG"], ["XRF"]]
         selected_stock_symbols = []
-        all_stock_symbols = @data_parser.parse_stock_symbols @response_body
+        body = @data_parser.parse_data @response_body
+        all_stock_symbols = @data_parser.parse_stock_symbols body
         selected_stock_symbols << all_stock_symbols.first
         selected_stock_symbols << all_stock_symbols[all_stock_symbols.count / 2]
         selected_stock_symbols << all_stock_symbols.last

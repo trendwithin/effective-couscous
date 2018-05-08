@@ -1,24 +1,26 @@
-require 'test_helper'
+require './test/test_helper'
 require 'json'
-require 'barchart'
+require 'barchart_data_parser'
+require 'api_connect'
 
 module Barchart
   module BarchartDataParser
-    class BarchartDataParserYearToDateHighsTest < ActiveSupport::TestCase
+    class BarchartDataParserYearToDateLowsTest < ActiveSupport::TestCase
       def setup
-        VCR.use_cassette('year_to_dates_highs') do
-        url = <<~HEREDOC.gsub(/^[\s\t]*|[\s\t]*\n/, '').strip
-        https://core-api.barchart.com/v1/quotes/get?lists=stocks.highslows.current.
-        highs.ytd.us&fields=symbol%2CsymbolName%2ClastPrice%2CpriceChange%2CpercentChange%
-        2Cvolume%2ChighHits1m%2ChighPercent1m%2ClowPercent1m%2CtradeTime%2CsymbolCode%
-        2CsymbolType%2ChasOptions&meta=field.shortName%2Cfield.type%2Cfield.description
-        &hasOptions=true&raw=1
-        HEREDOC
+        VCR.use_cassette('year_to_date_lows') do
+          url = <<~HEREDOC.gsub(/^[\s\t]*|[\s\t]*\n/, '').strip
+          https://core-api.barchart.com/v1/quotes/get?lists=stocks.highslows.current.
+          lows.ytd.us&fields=symbol%2CsymbolName%2ClastPrice%2CpriceChange%2CpercentChange%
+          2Cvolume%2ChighHits1m%2ChighPercent1m%2ClowPercent1m%2CtradeTime%2CsymbolCode%
+          2CsymbolType%2ChasOptions&meta=field.shortName%2Cfield.type%2Cfield.description
+          &hasOptions=true&raw=1
+          HEREDOC
 
-        @data_parser = Object.new
-        @data_parser.extend(Barchart::BarchartDataParser)
-        @page = @data_parser.fetch_url url
-        @response_body = @data_parser.parse_response_body(@page)
+          @data_parser = Object.new
+          @data_parser.extend(Barchart::BarchartDataParser)
+          @api_connection = ApiConnect.new(url)
+          @page = @api_connection.fetch_page_body
+          @response_body = @api_connection.parse_page_response_body
         end
       end
 
@@ -34,19 +36,19 @@ module Barchart
       end
 
       def test_expected_count_matches_returned_count
-        expected = 172
+        expected = 76
         count = @response_body['count']
         assert_equal expected, count
       end
 
       def test_expected_total_matches_returned_total
-        expected = 172
+        expected = 76
         total = @response_body['total']
         assert_equal expected, total
       end
 
       def test_first_middle_last_returned_symbol_matches_expected
-        expected_stock_symbols = [['AAXN'], ["LW"], ["ZUMZ"]]
+        expected_stock_symbols = [['ADOM'], ["IGC"], ["XRF"]]
         all_stock_symbols = []
         selected_stock_symbols = []
         @response_body['data'].each { |hash| all_stock_symbols << hash.values_at("symbol") }
@@ -63,21 +65,28 @@ module Barchart
       end
 
       def test_parse_count_returns_expected_count
-        expected_count = 172
+        expected_count = 76
         count = @data_parser.parse_count @response_body
         assert_equal expected_count, count
       end
 
       def test_parse_total_returns_expected_total
-        expected_total = 172
+        expected_total = 76
         total = @data_parser.parse_total @response_body
         assert_equal expected_total, total
       end
 
+      def test_parse_body_data
+        expected = @response_body['data']
+        result = @data_parser.parse_data @response_body
+        assert_equal expected, result
+      end
+
       def test_parse_stock_symbols
-        expected_stock_symbols = [['AAXN'], ["LW"], ["ZUMZ"]]
+        expected_stock_symbols = [['ADOM'], ["IGC"], ["XRF"]]
         selected_stock_symbols = []
-        all_stock_symbols = @data_parser.parse_stock_symbols @response_body
+        body = @data_parser.parse_data @response_body
+        all_stock_symbols = @data_parser.parse_stock_symbols body
         selected_stock_symbols << all_stock_symbols.first
         selected_stock_symbols << all_stock_symbols[all_stock_symbols.count / 2]
         selected_stock_symbols << all_stock_symbols.last
