@@ -28,7 +28,7 @@ module Barchart
     end
 
     def test_full_year_data_returned
-      expected = 252
+      expected = 124 # API Changed From 2-Years Data to 6-Months w No Notice
       count = @response_body['results'].count
       assert_equal expected, count
     end
@@ -38,24 +38,24 @@ module Barchart
       format_result = Barchart::BarchartApiParser.parse_historical_data_from_api_response result
       expected =
         {
-          market_close_date: "2018-04-10",
+          market_close_date: "2018-05-07",
           ticker: "IBM",
           company_name: "DEFAULT",
-          open: 155.03,
-          high: 156.605,
-          low: 154.75,
-          close: 155.39,
+          open: 144,
+          high: 144.32,
+          low: 142.64,
+          close: 143.22,
           last_price: 100000,
           percent_change: 1,
           net_change: 100000,
-          volume: 3955900
+          volume: 3657000
         }
         assert_equal expected, format_result
     end
 
     def test_response_body_results
       results = Barchart::BarchartApiParser.response_body_results @response_body
-      assert_equal 252, results.count
+      assert_equal 124, results.count
     end
 
     def test_malformed_data_errors
@@ -70,7 +70,7 @@ module Barchart
     def test_uniquness_violation
       record = [] << @response_body['results'].first
       duplicate = record
-      Barchart::BarchartApiParser.insert_historical_data duplicate
+      Barchart::BarchartApiParser.insert_historical_data duplicate, :historical
       duplicate = Barchart::BarchartApiParser.insert_historical_data duplicate, :historical
       assert_equal 1, duplicate[:errors]
     end
