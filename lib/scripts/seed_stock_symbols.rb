@@ -1,6 +1,6 @@
 require 'mechanize'
-require_relative 'data_srv_urls'
-require_relative 'parse_stock_symbols'
+require_relative 'data_server/data_srv_urls'
+require_relative 'data_server/parse_stock_symbols'
 
 urls = DataServer::DataServerUrls.data_server_urls
 universe = []
