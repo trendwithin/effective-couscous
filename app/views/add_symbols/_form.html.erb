@@ -1,0 +1,11 @@
+<%= form_with(url: add_symbols_path, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :ticker_group %>
+    <%= form.text_area :ticker_group, id: :add_symbol_ticker_group, cols: 80, rows: 10 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
