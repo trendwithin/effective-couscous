@@ -19,7 +19,6 @@ module Barchart
         insert = send(parse_method, obj)
         begin
           StockPriceHistory.create!(insert)
-          puts 'Inserted'
           validations[:success] += 1
         rescue ActiveRecord::NotNullViolation => active_record_not_null
           validations[:errors] += 1
