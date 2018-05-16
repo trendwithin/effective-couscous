@@ -12,7 +12,11 @@ class AddSymbolsController < ApplicationController
     else
       workflow = CreateNewSymbols.new(params[:ticker_group])
       workflow.run
-      redirect_to add_symbols_new_symbols_path
+      if workflow.errors.empty?
+        redirect_to add_symbols_new_symbols_path
+      else
+        redirect_to new_add_symbol_path, notice: workflow.errors
+      end
     end
   end
 end

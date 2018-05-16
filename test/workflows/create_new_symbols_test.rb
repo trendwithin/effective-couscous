@@ -56,4 +56,11 @@ class CreateNewSymbolsTest <ActiveSupport::TestCase
      new_tickers_count = StockSymbol.all.count
      assert_equal new_tickers_count, ticker_count + insert_count
    end
+
+  def test_duplicate_stock_symbol
+    ticker = stock_symbols(:one)
+    action = CreateNewSymbols.new("#{ticker.ticker} #{ticker.company_name}")
+    action.run
+    assert_equal [ticker.ticker], action.errors
+  end
 end

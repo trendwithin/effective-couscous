@@ -17,4 +17,12 @@ class AddSymbosTest < ApplicationSystemTestCase
     assert_content 'ABCD'
     assert_content 'WXYZ'
   end
+
+  test 'Duplicate Records' do
+    dupe = stock_symbols(:one)
+    visit new_add_symbol_path
+    fill_in 'ticker_group', with: "#{dupe.ticker} #{dupe.company_name}"
+    find('input[name="commit"]').click
+    assert_content ["#{dupe.ticker}"]
+  end
 end
