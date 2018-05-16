@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :market_monitors
+  resources :add_symbols, only: [:index, :new, :edit, :create]
+  get 'add_symbols/new_symbols'
   get 'scans/demo'
 
   root 'pages#frontpage'
