@@ -1,7 +1,9 @@
 require 'test_helper'
 require 'minitest/autorun'
 
+
 class CreateNewSymbolsTest < ActiveSupport::TestCase
+
    def setup
      @params = { values: "IBM MSFT NFLX" }
      @invalid_params = { values: "IBM, MSFT1 NFLX,"}

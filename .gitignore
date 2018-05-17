@@ -26,6 +26,6 @@ yarn-debug.log*
 # Ignore application configuration
 /config/application.yml
 
-
 # Ignore Seed File -- Exceeds Github Limits
 db/data_files/stock_import_2018.txt
+
