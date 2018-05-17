@@ -4,7 +4,7 @@ require_relative 'barchart/barchart_api_parser'
 
 # symbols = StockSymbol.limit(1).pluck(:ticker)
 # symbols = ["A"]
-symbols_list = StockSymbol.limit(2000).pluck(:ticker)
+symbols_list = StockPriceHistory.limit(2000).pluck(:ticker)
 symbols_list.each_slice(100) do |symbols|
   url = "https://marketdata.websol.barchart.com/getQuote.json?apikey=" +
          ENV['barchart_api_key'] + "&symbols=#{symbols.join(',')}"
